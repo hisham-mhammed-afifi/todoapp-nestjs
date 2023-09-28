@@ -7,10 +7,6 @@ export type TodoDocument = HydratedDocument<Todo>;
 
 @Schema()
 export class Todo {
-  @Prop({ type: mongoose.Schema.Types.ObjectId, required: true })
-  @ApiProperty()
-  _id: string;
-
   @Prop({ required: true })
   @ApiProperty({ example: 'new todo' })
   title: string;
