@@ -7,14 +7,10 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.useGlobalPipes(new ValidationPipe({ whitelist: true }));
 
-  const config = new DocumentBuilder()
-    .setTitle('TODOs app')
-    .setVersion('1.0')
-    .addTag('TODO')
-    .build();
+  const config = new DocumentBuilder().setBasePath('/').setTitle('TODOs app').setVersion('1.0').build();
   const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('swagger', app, document);
+  SwaggerModule.setup('swagger', app, document, {});
 
-  await app.listen(3000);
+  await app.listen(process.env.PORT);
 }
 bootstrap();
