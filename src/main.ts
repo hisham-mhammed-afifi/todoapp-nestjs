@@ -8,7 +8,7 @@ async function bootstrap() {
 
   const config = new DocumentBuilder().setTitle('TODOs app').setVersion('1.0').build();
   const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api', app, document, {});
+  SwaggerModule.setup('api', app, document, { customCssUrl: './swagger-ui.css', customfavIcon: './favicon-16x16.png' });
 
   app.useGlobalPipes(new ValidationPipe({ whitelist: true }));
 
