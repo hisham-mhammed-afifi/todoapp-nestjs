@@ -20,17 +20,9 @@ export class TodosController {
 
   @Get()
   @ApiOperation({ summary: 'Get all todos' })
-  @ApiResponse({ status: 200, type: Todo })
+  @ApiResponse({ status: 200, type: [Todo] })
   findAll() {
     return this.todosService.findAll();
-  }
-
-  @Get(':id')
-  @ApiOperation({ summary: 'Get todo by id' })
-  @ApiResponse({ status: 200, type: Todo })
-  @ApiResponse({ status: 404, description: 'Todo not found' })
-  findOne(@Param('id') id: string) {
-    return this.todosService.findOne(id);
   }
 
   @Put(':id')

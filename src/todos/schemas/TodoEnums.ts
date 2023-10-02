@@ -4,3 +4,9 @@ export enum TodoStatus {
   Active,
   Closed,
 }
+
+export enum TodoPriority {
+  High,
+  Medium,
+  Low,
+}

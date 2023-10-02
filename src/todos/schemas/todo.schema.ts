@@ -1,29 +1,33 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import mongoose, { HydratedDocument } from 'mongoose';
-import { TodoStatus } from './TodoStatus';
+import { TodoPriority, TodoStatus } from './TodoEnums';
 
 export type TodoDocument = HydratedDocument<Todo>;
 
 @Schema()
 export class Todo {
+  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true })
+  @ApiProperty({ example: '638c2fb47dd7b570ff38e31e' })
+  userId: string;
+
   @Prop({ required: true })
   @ApiProperty({ example: 'new todo' })
   title: string;
 
-  @Prop({ required: true })
+  @Prop()
   @ApiProperty({ example: 'this the details for your new todo' })
   details: string;
 
-  @Prop({ required: true })
+  @Prop({ required: true, default: TodoStatus.New })
   @ApiProperty({ example: TodoStatus.New })
   status: TodoStatus;
 
-  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Todo' })
-  @ApiProperty({ example: '638c2fb47dd7b570ff38e31e' })
-  parentId: string;
-
   @Prop({ required: true })
+  @ApiProperty({ example: TodoPriority.Low })
+  priority: TodoPriority;
+
+  @Prop({ required: true, default: false })
   @ApiProperty({ example: false })
   isDeleted: boolean;
 }
