@@ -11,7 +11,7 @@ export class Todo {
   @ApiProperty({ example: '638c2fb47dd7b570ff38e31e' })
   userId: string;
 
-  @Prop({ required: true })
+  @Prop({ unique: true, required: true })
   @ApiProperty({ example: 'new todo' })
   title: string;
 
